@@ -1,0 +1,98 @@
+SECTION 1
+QUESTION 1
+
+Create table DEPT(
+DEPTNO int,
+DNAME varchar(15),
+LOC varchar(10));
+insert into DEPT(DEPTNO, DNAME, LOC) values
+(10, 'ACCOUNTING', 'NEWYORK'),
+(20, 'RESEARCH', 'DALLAS'),
+(30, 'SALES', 'CHICAGO'),
+(40, 'OPERATIONS', 'BOSTON');
+select * from DEPT;
+
+
+
+QUESTION 2
+
+create table EMP(
+EMPNO int,
+ENAME varchar(10),
+JOB varchar(9),
+HIREDATE date,
+SAL float(7,2),
+COMM float(7,2),
+DEPTNO int);
+
+insert into EMP(EMPNO, ENAME, JOB, HIREDATE, SAL, COMM, DEPTNO) values
+(7839, 'KING', 'MANAGER', DATE '1991-11-17', 5000, NULL, 10),
+(7698, 'BLAKE', 'CLERK', DATE'1981-05-01', 2850, NULL, 30),
+(7782, 'CLARK', 'MANAGER', DATE '1981-06-09', 2450, NULL, 10),
+(7566, 'JONES', 'CLERK', DATE '1981-04-02', 2975, NULL, 20),
+(7654, 'MARTIN', 'SALESMAN', DATE'1981-09-28', 1250, 1400, 30),
+(7499, 'ALLEN', 'SALESMAN', DATE '1981-02-20', 1600, 300, 30);
+SELECT * FROM EMP;
+
+QUERRIES
+
+SELECT * FROM EMP WHERE SAL BETWEEN 2500 AND 5000;
+SELECT ENAME FROM EMP ORDER BY ENAME DESC;
+SELECT LOWER(JOB) FROM EMP;
+SELECT ENAME, LENGTH(ENAME) AS LENGTHOFENAME FROM EMP;
+SELECT DEPTNO, COUNT(DEPTNO) AS COUNTOFEMPLOYEES FROM EMP 
+GROUP BY DEPTNO ORDER BY DEPTNO; 
+SELECT DNAME, ENAME FROM DEPT, EMP 
+WHERE DEPT.DEPTNO=EMP.DEPTNO;
+SELECT ENAME, INSTR(ENAME, 'AR') FROM EMP;
+SELECT ENAME, SAL, SAL*0.2 "hRA" FROM EMP;SELECT * FROM EMP WHERE SAL BETWEEN 2500 AND 5000;
+SELECT ENAME FROM EMP ORDER BY ENAME DESC;
+SELECT LOWER(JOB) FROM EMP;
+SELECT ENAME, LENGTH(ENAME) AS LENGTHOFENAME FROM EMP;
+SELECT DEPTNO, COUNT(DEPTNO) AS COUNTOFEMPLOYEES FROM EMP 
+GROUP BY DEPTNO ORDER BY DEPTNO; 
+SELECT DNAME, ENAME FROM DEPT, EMP 
+WHERE DEPT.DEPTNO=EMP.DEPTNO;
+SELECT ENAME, INSTR(ENAME, 'AR') FROM EMP;
+SELECT ENAME, SAL, SAL*0.2 "hRA" FROM EMP;
+
+
+
+SECTION 2
+
+Question 2
+OUTPUT
+
+# QUESTION 2
+
+ delimiter //
+ create function func1(x int, y int, z int)
+ returns boolean
+ deterministic
+ begin
+ if(y+z>x) and (x+y>z) and (x+z>y) then
+ return true;
+ else return false;
+ end if;
+ end; //
+ delimiter ;
+
+
+# QUESTION 1
+
+  create table tempp(exist varchar(10));
+ 
+ delimiter //
+ create procedure PROC1(x varchar(20), y varchar(20))
+ begin
+ set x = 'DAC';
+ set y = 'CDAC';
+ if locate(x, y) then
+	insert into tempp values('Exist');
+    else
+    insert into tempp values('Not Exist');
+end if;
+end; //
+delimiter ;
+
+select * from tempp;
